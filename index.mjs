@@ -1,8 +1,6 @@
 import axios from "axios";
 import { configDotenv } from "dotenv";
 
-configDotenv();
-
 async function getToken() {
   const deviceId = "dev-cloudtypecronstartjs";
 
@@ -18,12 +16,12 @@ async function getToken() {
 }
 
 async function startInstance(token) {
-  const organization = process.env.ORGANIZATION_NAME;
+  const name = process.env.ACCOUNT_NAME;
   const project = process.env.PROJECT_NAME;
-  const instance = process.env.INSTANCE_NAME;
+  const service = process.env.SERVICE_NAME;
 
   await axios.put(
-    `https://api.cloudtype.io/project/${organization}/${project}/stage/main/deployment/${instance}/start`,
+    `https://api.cloudtype.io/project/${name}/${project}/stage/main/deployment/${service}/start`,
     undefined,
     {
       headers: {
@@ -33,5 +31,8 @@ async function startInstance(token) {
   );
 }
 
-const token = await getToken();
-await startInstance(token);
+export const handler = async (event) => {
+  configDotenv();
+  const token = await getToken();
+  await startInstance(token);
+};

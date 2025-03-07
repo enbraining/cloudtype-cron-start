@@ -1,2 +1,5 @@
 .env
 node_modules
+nodejs
+layer.zip
+.DS_Store
