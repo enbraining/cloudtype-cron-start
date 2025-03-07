@@ -50,9 +50,11 @@ zip -r layer.zip nodejs
 
 `AWS - Lambda - Functions - cloudtypeCronFunction - Function overview - Add trigger`
 
+> 0 20 ? * * * : 한국 기준 5시 
+
 - Triger configuration
   - EventBridge (CloudWatch Events) 선택
   - Create a new rule
     - Rule name: cloudtypeCronRule
     - Rule type: Schedule expression
-    - Schedule expression: cron(0 20 ? \* \* \*)
+    - Schedule expression: cron(0 20 ? \* \* \*) 
